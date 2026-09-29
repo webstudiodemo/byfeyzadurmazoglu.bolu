@@ -191,31 +191,20 @@ function initHorizontalScroll() {
   });
 
   mm.add('(max-width: 900px)', () => {
-    const section = $('.services');
-    const viewport = $('.services__viewport');
+    // Mobile uses a true single-column composition.
+    // The desktop horizontal rail is intentionally disabled here so the page
+    // can never create a secondary horizontal gesture or hide content off-screen.
     const track = $('.services__track');
-    const progress = $('.services__progress i');
-    if (!section || !viewport || !track) return;
-
-    const distance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
-
-    const tween = gsap.to(track, {
-      x: () => -distance(),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => '+=' + Math.max(distance(), innerHeight * .95),
-        pin: viewport,
-        scrub: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: self => {
-          if (progress) progress.style.width = (self.progress * 100).toFixed(2) + '%';
-        }
-      }
-    });
-    return () => tween.scrollTrigger?.kill();
+    const progress = $('.services__progress');
+    if (track) {
+      gsap.set(track, { clearProps: 'transform' });
+      track.classList.add('is-mobile-stack');
+    }
+    progress?.setAttribute('hidden', '');
+    return () => {
+      track?.classList.remove('is-mobile-stack');
+      progress?.removeAttribute('hidden');
+    };
   });
 }
 
