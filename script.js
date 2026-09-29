@@ -65,6 +65,7 @@ function initNavigation() {
     menu?.setAttribute('aria-hidden', String(!open));
     menuToggle?.setAttribute('aria-expanded', String(open));
     body.classList.toggle('is-locked', open);
+    if (lenis) open ? lenis.stop() : lenis.start();
   };
 
   menuToggle?.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
@@ -354,6 +355,7 @@ function initBooking() {
     booking.classList.add('is-open');
     booking.setAttribute('aria-hidden', 'false');
     body.classList.add('is-locked');
+    lenis?.stop();
     buildDates();
     bookingClose?.focus();
   };
@@ -362,6 +364,7 @@ function initBooking() {
     booking.classList.remove('is-open');
     booking.setAttribute('aria-hidden', 'true');
     body.classList.remove('is-locked');
+    lenis?.start();
     lastFocused?.focus?.();
   };
 
@@ -371,12 +374,41 @@ function initBooking() {
   serviceInput?.addEventListener('change', updateSummary);
 
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && booking.classList.contains('is-open')) close();
+    if (!booking.classList.contains('is-open')) return;
+    if (event.key === 'Escape') {
+      close();
+      return;
+    }
+    if (event.key !== 'Tab' || !bookingDialog) return;
+
+    const focusable = $('button, input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])', bookingDialog)
+      .filter(el => !el.disabled && el.getAttribute('aria-hidden') !== 'true');
+
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 
   form?.addEventListener('submit', event => {
     event.preventDefault();
-    if (!serviceInput.value || !dateInput.value || !timeInput.value || !chosenDate) return;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (!serviceInput.value || !dateInput.value || !timeInput.value || !chosenDate) {
+      updateSummary();
+      return;
+    }
 
     const name = $('#name').value.trim();
     const phone = $('#phone').value.trim();
