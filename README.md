@@ -4,9 +4,9 @@ Premium / editorial / cinematic beauty website for GitHub Pages.
 
 ## Included
 - Luxury editorial responsive design
-- Cinematic intro + hero parallax
+- Cinematic intro + Lenis smooth scroll + GSAP ScrollTrigger
 - Editorial marquee
-- Scroll-driven pinned image / fullscreen transition
+- Hero parallax → pinned image → scroll-driven fullscreen scale → horizontal collection → normal vertical flow
 - Horizontal service collection on desktop
 - Mobile-first navigation and layout
 - Appointment modal with service/date/time/contact flow
@@ -14,6 +14,7 @@ Premium / editorial / cinematic beauty website for GitHub Pages.
 - Google Maps location experience
 - Instagram and contact CTAs
 - Google review trust section
+- Subtle mouse parallax + restrained magnetic CTA hover
 - Semantic HTML, focusable controls and reduced-motion support
 
 ## Business
