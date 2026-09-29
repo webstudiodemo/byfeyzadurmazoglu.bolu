@@ -49,7 +49,7 @@ function initLenis() {
   });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(1000, 16);
+  gsap.ticker.lagSmoothing(0);
 }
 
 function initHeader() {
@@ -119,6 +119,7 @@ function initPinnedImage() {
         end: () => '+=' + innerHeight * 1.55,
         scrub: true,
         pin: stage,
+        pinSpacing: false,
         anticipatePin: 1,
         invalidateOnRefresh: true
       }
