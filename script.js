@@ -145,6 +145,7 @@ function initPinnedImage() {
         end: () => '+=' + innerHeight * 1.1,
         scrub: true,
         pin: stage,
+        pinSpacing: false,
         anticipatePin: 1,
         invalidateOnRefresh: true
       }
