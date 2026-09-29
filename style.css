@@ -61,3 +61,379 @@
 }
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}.reveal{opacity:1;transform:none}.intro{display:none}.marquee__track{animation:none}}
+/* ------------------------------------------------------------------
+   MOBILE FINAL COMPOSITION
+   Mobile is a dedicated single-column layout: no horizontal rail,
+   no off-canvas content and no page-level sideways movement.
+   ------------------------------------------------------------------ */
+@media(max-width:600px){
+  html,body{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-x:hidden !important;
+  }
+
+  main,
+  section,
+  header,
+  footer,
+  .hero,
+  .statement,
+  .pin-section,
+  .services,
+  .story,
+  .reviews,
+  .location,
+  .final-cta,
+  .footer{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+
+  img,
+  iframe,
+  video,
+  svg{
+    max-width:100%;
+  }
+
+  .hero{
+    min-height:100svh;
+    height:auto;
+  }
+
+  .hero__content{
+    width:auto;
+    max-width:none;
+    right:var(--pad);
+    left:var(--pad);
+  }
+
+  .hero h1{
+    width:100%;
+    max-width:100%;
+    font-size:clamp(56px,17vw,82px);
+    line-height:.82;
+  }
+
+  .hero__copy{
+    width:100%;
+    max-width:300px;
+  }
+
+  .hero__actions{
+    width:100%;
+    max-width:320px;
+  }
+
+  .button{
+    max-width:100%;
+    white-space:normal;
+  }
+
+  .statement__grid,
+  .story,
+  .reviews__grid,
+  .location{
+    min-width:0;
+  }
+
+  .statement__lead,
+  .statement__body,
+  .story__copy,
+  .reviews__grid > *,
+  .location__content{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+  }
+
+  .statement__lead{
+    font-size:clamp(38px,11vw,52px);
+    line-height:.96;
+  }
+
+  .pin-section{
+    width:100%;
+    max-width:100%;
+    height:110svh;
+    overflow:clip;
+  }
+
+  .pin-stage{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+
+  .pin-frame{
+    width:calc(100% - (var(--pad) * 2));
+    max-width:none;
+    height:min(63svh,560px);
+  }
+
+  .pin-caption{
+    width:calc(100% - (var(--pad) * 2));
+    max-width:none;
+    min-width:0;
+  }
+
+  .pin-caption strong{
+    min-width:0;
+    max-width:100%;
+    font-size:clamp(28px,8vw,36px);
+  }
+
+  .services{
+    width:100%;
+    overflow:hidden;
+  }
+
+  .services__intro{
+    width:100%;
+    min-width:0;
+    grid-template-columns:1fr;
+    padding-left:var(--pad);
+    padding-right:var(--pad);
+  }
+
+  .services__intro h2{
+    width:100%;
+    max-width:100%;
+    font-size:clamp(54px,15vw,74px);
+    line-height:.86;
+  }
+
+  .services__intro > p{
+    width:100%;
+    max-width:320px;
+  }
+
+  /* Replace the desktop horizontal collection with a mobile vertical stack. */
+  .services__viewport{
+    width:100%;
+    max-width:100%;
+    height:auto !important;
+    min-width:0;
+    overflow:visible;
+  }
+
+  .services__track,
+  .services__track.is-mobile-stack{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    gap:22px;
+    padding:0 var(--pad);
+    margin:0;
+    transform:none !important;
+  }
+
+  .service-card{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+  }
+
+  .service-card__image{
+    width:100%;
+    height:min(58svh,500px);
+  }
+
+  .service-card h3,
+  .service-card p{
+    max-width:100%;
+    overflow-wrap:break-word;
+  }
+
+  .services__progress{
+    display:none !important;
+  }
+
+  .story__image{
+    width:calc(100% - (var(--pad) * 2));
+    max-width:none;
+    margin-left:var(--pad);
+    margin-right:var(--pad);
+    height:min(62svh,560px);
+  }
+
+  .story__copy{
+    padding-left:var(--pad);
+    padding-right:var(--pad);
+  }
+
+  .story__copy h2,
+  .reviews h2,
+  .location h2,
+  .final-cta h2{
+    width:100%;
+    max-width:100%;
+    font-size:clamp(54px,15vw,76px);
+    line-height:.88;
+  }
+
+  .reviews{
+    width:100%;
+    padding-left:var(--pad);
+    padding-right:var(--pad);
+  }
+
+  .reviews__list{
+    width:100%;
+    max-width:100%;
+    grid-template-columns:1fr;
+  }
+
+  .review-card{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+
+  .review-card__top{
+    min-width:0;
+  }
+
+  .review-card__top > div{
+    min-width:0;
+    max-width:100%;
+  }
+
+  .review-card__top strong{
+    display:block;
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+
+  .review-card p{
+    width:100%;
+    max-width:100%;
+    overflow-wrap:anywhere;
+    word-break:normal;
+  }
+
+  .review-note{
+    width:100%;
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+
+  .location__map{
+    width:100%;
+    max-width:100%;
+    min-height:46svh;
+    height:46svh;
+  }
+
+  .location__map iframe{
+    width:100%;
+    max-width:100%;
+  }
+
+  .location__content{
+    padding-left:var(--pad);
+    padding-right:var(--pad);
+  }
+
+  .contact-list,
+  .contact-list > div,
+  .contact-list p{
+    min-width:0;
+    max-width:100%;
+  }
+
+  .contact-list p{
+    overflow-wrap:anywhere;
+  }
+
+  .location__actions{
+    width:100%;
+    max-width:320px;
+  }
+
+  .location__actions .button{
+    width:100%;
+    max-width:320px;
+  }
+
+  .final-cta{
+    width:100%;
+    min-height:72svh;
+    overflow:hidden;
+  }
+
+  .final-cta__inner{
+    width:100%;
+    max-width:100%;
+    padding-left:var(--pad);
+    padding-right:var(--pad);
+  }
+
+  .final-cta h2{
+    font-size:clamp(58px,16vw,84px);
+  }
+
+  .footer__top,
+  .footer__bottom{
+    width:100%;
+    min-width:0;
+  }
+
+  .footer__bottom span{
+    min-width:0;
+    overflow-wrap:anywhere;
+  }
+
+  .booking{
+    width:100%;
+    max-width:100%;
+    overflow:hidden;
+  }
+
+  .booking__dialog{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    padding-left:var(--pad);
+    padding-right:var(--pad);
+    overflow-x:hidden;
+  }
+
+  .booking__header h2{
+    max-width:100%;
+    font-size:clamp(48px,15vw,68px);
+    line-height:.88;
+  }
+
+  .date-grid,
+  .time-grid{
+    width:100%;
+    max-width:100%;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+
+  .date-button,
+  .time-button{
+    min-width:0;
+    max-width:100%;
+    overflow:hidden;
+  }
+
+  .field-row{
+    width:100%;
+    min-width:0;
+  }
+
+  .field-row input,
+  .booking__step select,
+  .booking__step textarea{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+}
